@@ -7,10 +7,13 @@ var tbody = d3.select("tbody");
 //use that to filter data.
 button.on("click", function() {
 
-    var input = d3.select("#datetime").property("value");
+    var time = d3.select("#datetime").property("value");
+    var city = d3.select("#city").property("value");
+    var state = d3.select("#state").property("value");
+    var country = d3.select("#country").property("value");
+    var shape = d3.select("#shape").property("value");
 
-
-    var results = timeFilter(input);
+    var results = ufoFilter(time,city,state,country,shape);
 
     tbody.text("");
     //take the filter and populate the html table with the results. 
@@ -27,7 +30,34 @@ button.on("click", function() {
         });
       });
   });
-//takes a date and returns the data logs that occured on that date.
-function timeFilter(date){
-    return tableData.filter(entry => entry.datetime==date);
+//checks if each entry matches filter peramiters, if provided
+function ufoFilter(date,city,state,country,shape){
+    return tableData.filter(function(entry){
+      if (date){
+        if(entry.datetime!=date){
+          return false;
+        };
+      };
+      if (city){
+        if(entry.city!=city){
+          return false;
+        };
+      };
+      if (state){
+        if(entry.state!=state){
+          return false;
+        };
+      };
+      if (country){
+        if(entry.country!=country){
+          return false;
+        };
+      };
+      if (shape){
+        if(entry.shape!=shape){
+          return false;
+        };
+      };
+      return true;
+    });
 };
