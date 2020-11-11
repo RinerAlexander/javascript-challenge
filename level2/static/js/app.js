@@ -39,22 +39,22 @@ function ufoFilter(date,city,state,country,shape){
         };
       };
       if (city){
-        if(entry.city!=city){
+        if(entry.city!=city.toLowerCase()){
           return false;
         };
       };
       if (state){
-        if(entry.state!=state){
+        if(entry.state!=state.toLowerCase()){
           return false;
         };
       };
       if (country){
-        if(entry.country!=country){
+        if(entry.country!=country.toLowerCase()){
           return false;
         };
       };
       if (shape){
-        if(entry.shape!=shape){
+        if(entry.shape!=shape.toLowerCase()){
           return false;
         };
       };
